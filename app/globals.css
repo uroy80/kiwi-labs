@@ -1,0 +1,243 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 20 10% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 20 10% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 20 10% 15%;
+
+    /* Copper primary color */
+    --primary: 25 85% 45%;
+    --primary-foreground: 0 0% 98%;
+
+    /* Complementary bronze/gold secondary */
+    --secondary: 35 80% 50%;
+    --secondary-foreground: 20 10% 15%;
+
+    --muted: 25 20% 95%;
+    --muted-foreground: 25 10% 40%;
+
+    /* Soft copper accent */
+    --accent: 25 30% 90%;
+    --accent-foreground: 20 10% 15%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 25 15% 90%;
+    --input: 25 15% 90%;
+    --ring: 25 85% 45%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 20 15% 10%;
+    --foreground: 25 10% 90%;
+    --card: 20 15% 10%;
+    --card-foreground: 25 10% 90%;
+    --popover: 20 15% 10%;
+    --popover-foreground: 25 10% 90%;
+
+    /* Darker copper for dark mode */
+    --primary: 25 70% 40%;
+    --primary-foreground: 0 0% 98%;
+
+    /* Darker bronze/gold for dark mode */
+    --secondary: 35 70% 45%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 25 15% 20%;
+    --muted-foreground: 25 10% 70%;
+
+    /* Darker copper accent for dark mode */
+    --accent: 25 30% 25%;
+    --accent-foreground: 25 10% 90%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 25 15% 25%;
+    --input: 25 15% 25%;
+    --ring: 25 70% 40%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-raleway), sans-serif;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-playfair), serif;
+    @apply tracking-tight;
+  }
+
+  .font-serif {
+    font-family: var(--font-playfair), serif;
+  }
+
+  .font-sans {
+    font-family: var(--font-raleway), sans-serif;
+  }
+}
+
+@layer components {
+  .gradient-heading {
+    @apply bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-hover {
+    @apply transition-all duration-300;
+    @apply hover:shadow-xl;
+    @apply hover:scale-[1.02];
+    @apply hover:border-primary/50;
+  }
+
+  .chat-bubble-user {
+    @apply bg-gradient-to-r from-primary to-primary/90 text-primary-foreground rounded-2xl rounded-tr-none px-4 py-2 shadow-md;
+  }
+
+  .chat-bubble-ai {
+    @apply bg-gradient-to-r from-muted to-muted/90 rounded-2xl rounded-tl-none px-4 py-2 shadow-md;
+  }
+
+  .fancy-border {
+    position: relative;
+    border-radius: 0.75rem;
+    padding: 1px;
+    background: linear-gradient(to right, hsl(var(--primary)), hsl(var(--secondary)));
+  }
+
+  .fancy-button {
+    @apply relative overflow-hidden bg-gradient-to-r from-primary to-secondary text-primary-foreground hover:from-primary/90 hover:to-secondary/90 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5;
+    letter-spacing: 0.02em;
+  }
+
+  .glass-card {
+    @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-xl rounded-xl;
+  }
+
+  .gradient-border > * {
+    border-radius: 0.75rem;
+  }
+
+  .shimmer {
+    @apply relative overflow-hidden;
+  }
+
+  .shimmer::after {
+    @apply absolute inset-0;
+    content: "";
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transform: translateX(-100%);
+    animation: shimmer 2s infinite;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-in-out;
+  }
+
+  .animate-slide-down {
+    animation: slideDown 0.5s ease-in-out;
+  }
+
+  .animate-scale {
+    animation: scale 0.3s ease-in-out;
+  }
+
+  .pulse {
+    animation: pulse 2s infinite;
+  }
+
+  .floating {
+    animation: floating 3s ease-in-out infinite;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes floating {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
